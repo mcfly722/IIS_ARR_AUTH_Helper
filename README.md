@@ -4,7 +4,7 @@
 It is C# script for IIS which allows you to delegate authentication from frontend to backend server in cases where it is impossible to do through ARR, for example in isolated networks where your backend server have no AD relationships with domain where frontend server located.
 
 ## How it works? ##
-Script used <b>private key</b> of certificate to sign token data {UserName & TimeStamp}. To validate it, used <b>public key</b> which should be deployed to all your backend servers.<br><br>
+Script used the <b>private key</b> of certificate to sign token data {UserName & TimeStamp}. To validate it, used <b>public key</b> which should be deployed to all your backend servers.<br><br>
 Token includes <b>UserName</b>, <b>TimeStamp</b> and <b>Signature</b>. It is transmitted to backend server using client cookie. Then, it is checked for case of substitution and TTL expiry.<br><br>
 ![alt tag](https://github.com/Serjeo722/IIS_ARR_AUTH_Helper/blob/master/doc/schema.png?raw=true)
 ## Requirements ##
