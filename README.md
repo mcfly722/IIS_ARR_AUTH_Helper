@@ -24,7 +24,7 @@ Token includes <b>UserName</b>, <b>TimeStamp</b> and <b>Signature</b>. It is tra
 7) Copy <b>token.inc</b> script to both frontend and backend sites and use <b>default.aspx</b> on backend side to check your authentication.<br>
 8) Modify <b>global.asax</b> script <b>certificateSubject</b> variable on both sites, put there your certificate subject (ensure, that you have no spaces around <b>=</b> sign).<br>
 9) Turn on your authentication method on frontend site and anonymous authentication on backend.<br>
-9) Syncronize UTC time on both servers.<br>
+10) Syncronize UTC time on both servers.<br>
 <br>
 That's all. If your did everything correctly, you will see your authenticated user name in AUTH_USER variable on backend side.<br>
 ## License ##
