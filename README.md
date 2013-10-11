@@ -6,8 +6,7 @@ It is C# script for IIS which allows you to delegate authentication from fronten
 ## How it works? ##
 This script uses HMAC (<a href="http://en.wikipedia.org/wiki/Hash-based_message_authentication_code">Hash-based Message Authentication Code</a>). For signing, script uses private key of certificate, and for signature checking it uses public key which should be deployed to all backend servers.<br><br>
 For signing uses <a href="http://en.wikipedia.org/wiki/RSA_(algorithm)">RSA algorithm</a>.<br><br>
-Token which includes <b>UserName</b>, <b>TimeStamp</b> and <b>Signature</b> transmitted to backend server throught client cookies. Then on backend side it is checked against data substitution.<br><br>
-Each token has TTL.<br>
+Token includes <b>UserName</b>, <b>TimeStamp</b> and <b>Signature</b> and transmitted to backend server throught client cookies. Then, it is checked for case of substitution and TTL expiry.<br><br>
 ![alt tag](https://github.com/Serjeo722/IIS_ARR_AUTH_Helper/blob/master/doc/schema.png?raw=true)
 ## Requirements ##
 1) IIS 7.0 or higher<br>
@@ -18,16 +17,16 @@ Each token has TTL.<br>
 
 ## How to deploy it? ##
 1) Generate certificate with private key.<br>
-2) Install certificate with private key on frontend and only public key on backend server to MACHINE\Personal store.<br>
-3) Give to site application pool user permission to read certificate private key.<br>
+2) Install certificate with private key on frontend server and on backend server to Computer\Personal store (backend need only public key).<br>
+3) Give to appool user, permission to read certificate private key.<br>
 4) Add to your URL Rewrite rule condition "route to backend only if {HTTP_COOKIE} match \*TOKEN=\*".<br>
 5) Copy <b>frontend_global.asax</b> script to frontend site directory and rename it to <b>global.asax</b>.<br>
 6) Copy <b>backend_global.asax</b> script to backend site directory and rename it to <b>global.asax</b>.<br>
-7) Copy <b>token.inc</b> script to both frontend and backend sites and use <b>default.aspx</b> on backend side to check your authentication<br>
-8) Modify <b>global.asax</b> script <b>certificateSubject</b> variable on both sites. Put there your certificate subject (ensure, that you have no spaces around <b>=</b> sign).<br>
-9) Turn on your authentication method on frontend site and turn on anonymous authentication on backend.<br>
+7) Copy <b>token.inc</b> script to both frontend and backend sites and use <b>default.aspx</b> on backend side to check your authentication.<br>
+8) Modify <b>global.asax</b> script <b>certificateSubject</b> variable on both sites, put there your certificate subject (ensure, that you have no spaces around <b>=</b> sign).<br>
+9) Turn on your authentication method on frontend site and anonymous authentication on backend.<br>
 9) Syncronize UTC time on both servers.<br>
 <br>
-That's all. If your did everything correctly you will see your authenticated user name in AUTH_USER variable on backend side.<br>
+That's all. If your did everything correctly, you will see your authenticated user name in AUTH_USER variable on backend side.<br>
 ## License ##
 <a href="http://www.apache.org/licenses/LICENSE-2.0.html">Apache 2.0</a>
