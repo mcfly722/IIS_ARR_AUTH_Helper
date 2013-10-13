@@ -1,7 +1,7 @@
 # IIS ARR Authentication Helper #
 
 ## What is it?##
-It is C# script for IIS which allows you to delegate authentication from frontend to backend server in cases where it is impossible to do through ARR, for example in isolated networks where your backend server have no AD relationships with domain where frontend server located.
+It is C# script for IIS which allows you to delegate authentication from frontend to backend server in cases where it is impossible to do it through ARR, for example in isolated networks where your backend server have no AD relationships with domain where frontend server located.
 
 ## How it works? ##
 Script used the <b>private key</b> of certificate to sign token data {UserName & TimeStamp}. To validate it, used <b>public key</b> which should be deployed to all your backend servers.<br><br>
