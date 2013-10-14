@@ -12,10 +12,12 @@ Token includes <b>UserName</b>, <b>TimeStamp</b> and <b>Signature</b>. It is tra
 2) deployed ARR(<a href="http://www.iis.net/downloads/microsoft/application-request-routing">Application Request Routing</a>) module<br>
 3) deployed <a href="http://www.iis.net/downloads/microsoft/url-rewrite">URL Rewrite</a> module<br>
 4) ASP.NET<br>
-5) <a href="http://msdn.microsoft.com/en-us/library/bfsktky3.aspx">makecert</a> tool to generate certificate<br>
+5) <a href="http://msdn.microsoft.com/en-us/library/bfsktky3.aspx">makecert</a> & <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/ff550672(v=vs.85).aspx">pvk2pfx</a> tools to generate certificate<br>
 
 ## How to deploy it? ##
 1) Generate certificate with private key.<br>
+```makecert.exe -pe -r -a sha1 -len 2048 -n "CN=FE2BE-Authentication" -eku "1.3.14.3.2.26" -sv cert.pvk cert.cer```<br>
+```pvk2pfx.exe -pvk cert.pvk -spc cert.cer -pfx cert.pfx```<br>
 2) Install certificate with private key on frontend server and on backend server to Computer\Personal store (backend need only public key).<br>
 3) Give to appool user, permission to read certificate private key.<br>
 4) Add to your URL Rewrite rule condition "route to backend only if {HTTP_COOKIE} match \*TOKEN=\*".<br>
