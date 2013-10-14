@@ -39,7 +39,7 @@
 						Response.End();
 					}			
 				} else 
-					throw new System.Exception("Your TOKEN is not valid. If error remains, please, ensure that both sertificates ("+ certificateSubject +") on frontend and backend servers are match.");
+					throw new System.Exception("Your TOKEN is not valid. If error remains, please, clear your cookie and ensure that both sertificates ("+ certificateSubject +") on frontend and backend servers are match.");
 			} else 
 				throw new System.Exception("Check, that you have been forwarded from Frontend site (TOKEN cookie should be exist).");
 		} else 
